@@ -1,0 +1,48 @@
+<div class="conatiner-fluid p-5">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card bg-light">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-11">
+              <h3><b>ADD POST</b></h3>
+            </div>
+            <div class="col-md-1">
+              <a routerLinkActive="active" routerLink='/admin/list-posts'>
+                <button class="btn color">Go to Page Lists</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="conatiner-fluid pt-2 p-5">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card bg-light">
+        <div class="card-body">
+          <div class="p-5">
+            <div class="login-form-1 bg-light">
+              <form  [formGroup]="addPostForm" (ngSubmit)="addPost()">
+                <div class="form-group">
+                  <label for="title">Post Title</label>
+                  <input type="text" class="form-control" formControlName="title" id="title"  placeholder="Enter a title">
+                </div>
+                <div class="form-group">
+                  <label for="body">Post Body</label>
+                  <input type="text" class="form-control" formControlName="body" id="body" placeholder="add body">
+                </div>
+                <br>
+                <button  type="submit" class="btn color">Save Post </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

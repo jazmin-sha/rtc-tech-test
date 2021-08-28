@@ -1,0 +1,108 @@
+<div class="conatiner-fluid p-5">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card bg-light">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-10">
+              <h3><b>POST LISTS</b></h3>
+            </div>
+            <div class="col-md-1">
+              <a routerLinkActive="active" routerLink='/admin/add-posts'>
+                <button class="btn color">Add Post</button>
+              </a>
+            </div>
+            <div class="col-md-1">
+              <a routerLinkActive="active" routerLink='/'>
+                <button class="btn btn-light">Logout</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="conatiner-fluid pt-2 p-5">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card  bg-light">
+        <div class="card-body">
+          <table class="table bg-light">
+            <thead class="thead">
+              <tr>
+                <th scope="col">User Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Body</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngIf="postArrayength === 0">
+                <td></td>
+                <td></td>
+                <td>
+                 <img width="600" height="400" class="img-radius align-top m-r-15 rounded-circle"
+                 src="https://i.pinimg.com/originals/c9/22/68/c92268d92cf2dbf96e3195683d9e14fb.png" alt="error" >
+                </td>
+                <td></td>
+               </tr>
+              <tr *ngFor="let item of postArray">
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.title}}</td>
+                <td>{{item.body}}</td>
+                <td>
+                  <a class="p-2" (click)="open(content, item)">
+                    <button class="btn btn-secondary ">
+                      Edit
+                      <!-- <i class="fa fa-pencil"  ></i> -->
+                    </button>
+                  </a>
+                  <a class="p-2" (click)="deletePost(item.id)">
+                    <button class="btn btn-danger"  >
+                      Delete
+                      <!-- <i class="fa fa-trash"  ></i> -->
+                    </button>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal >
+  <form  [formGroup]="editPostForm" enctype="multipart/form-data">
+    <div class="modal-header">
+        <h4 class="modal-title"   id="modal-basic-title">Update Product</h4><span>(All fields are required)</span>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+           <div class="mb-3">
+            <label for="title" class="col-form-label"> <b>Product Name</b> :</label>
+            <input class="form-control" id="title" [(ngModel)]="selectedPost.title" formControlName="title" placeholder="Add a post title" type="text" required="">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="mb-3">
+           <label for="body" class="col-form-label"> <b>Product Name</b> :</label>
+           <input class="form-control" id="body" [(ngModel)]="selectedPost.body" formControlName="body" placeholder="Add a post body" type="text" required="">
+         </div>
+       </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button"  [disabled]="!editPostForm.valid"  (click)="updatePost(selectedPost.id)" class="btn color " data-dismiss="content"  >Save</button>
+      <button type="button" class="btn btn-secondary "  (click)="modal.dismiss('Cross click')"  data-dismiss="content"  >Close</button>
+    </div>
+  </form>
+</ng-template>
