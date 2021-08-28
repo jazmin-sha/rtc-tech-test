@@ -76,7 +76,8 @@ closeResult = '';
 open(content:any, product:any) {
   this.editPostForm = new FormGroup({
    title: new FormControl('', [Validators.required]),
-   body: new FormControl('', [Validators.required])
+   body: new FormControl('', [Validators.required]),
+   userId: new FormControl('', [Validators.required])
  });
      // console.log(id);
     this.selectedPost = product;
@@ -93,6 +94,7 @@ updatePost(id:any):void{
  this.myJSON = {
    "title":this.editPostForm.value.title,
    "body":this.editPostForm.value.body,
+   "userId":this.editPostForm.value.userId,
  }
 
  this.postSer.updatePost(this.selectedPost.id, this.myJSON)

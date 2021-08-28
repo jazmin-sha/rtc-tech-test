@@ -26,7 +26,8 @@ export class AddPostComponent implements OnInit {
   addForm(){
     this.addPostForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
-      body: new FormControl('', [Validators.required])
+      body: new FormControl('', [Validators.required]),
+      userId: new FormControl('', [Validators.required])
      });
   }
 
@@ -37,6 +38,7 @@ addPost(){
   this.myJSON = {
     "title":this.addPostForm.value.title,
     "body":this.addPostForm.value.body,
+    "userId":this.addPostForm.value.userId,
   }
 
 
